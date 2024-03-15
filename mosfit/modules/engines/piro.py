@@ -32,8 +32,8 @@ class Shock_Cooling(Engine):
         self._rest_t_explosion = kwargs[self.key('texplosion')]
         self._kappa = kwargs[self.key('kappa')]
         self._v_ejecta = kwargs[self.key('vejecta')] * KM_CGS
-        self._m_ejecta = kwargs[self.key('mejecta')]
-        self._m_csm = kwargs[self.key('mcsm')]
+        self._m_ejecta = kwargs[self.key('mejecta')] * M_SUN_CGS
+        self._m_csm = kwargs[self.key('mcsm')] * M_SUN_CGS
         self._r_init = kwargs[self.key('rinit')]* AU_CGS  # AU to cm
         self._n = kwargs[self.key('n')]
         self._delta = kwargs[self.key('delta')]
