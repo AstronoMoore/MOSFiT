@@ -34,16 +34,16 @@ class Shock_Cooling(Engine):
         self._v_ejecta = kwargs[self.key('vejecta')] * KM_CGS
         self._m_ejecta = kwargs[self.key('mejecta')] * M_SUN_CGS
         self._m_csm = kwargs[self.key('mcsm')] * M_SUN_CGS
-        self._r_init = kwargs[self.key('rinit')]* AU_CGS  # AU to cm
+        self._r_init = kwargs[self.key('rinit')]
         self._n = kwargs[self.key('n')]
         self._delta = kwargs[self.key('delta')]
 
-        E_SN =  0.3 * self._m_ejecta * M_SUN_CGS * self._v_ejecta**2 # This should really be the photospheric velocity 
+        E_SN =  0.3 * self._m_ejecta * self._v_ejecta**2 # This should really be the photospheric velocity 
         E51 = E_SN / 1e51
-        Ee = 2e49 * E51 * ( (self._m_ejecta / 3 ) ** (-0.7) ) * ( ((self._m_csm / 0.01)) ** (0.7) )
+        Ee = 2e49 * E51 * ( (self._m_ejecta / (3 * M_SUN_CGS) ) ** (-0.7) ) * ( ((self._m_csm / (0.01 * M_SUN_CGS))) ** (0.7) )
         K = (self._n-3)*(3 - self._delta) / ( FOUR_PI * (self._n-self._delta)) 
-        vt = ( (((self._n -5 )*(5 - self._delta))/((self._n -3 )*(3 - self._delta))) ** 0.5 ) * ( (2 * Ee / (self._m_csm * M_SUN_CGS)) ** 0.5 )
-        td = ((3 * self._kappa * K * self._m_csm * M_SUN_CGS)/((self._n - 1 ) * vt *C_CGS)) ** 0.5
+        vt = ( (((self._n -5 )*(5 - self._delta))/((self._n -3 )*(3 - self._delta))) ** 0.5 ) * ( (2 * Ee / (self._m_csm)) ** 0.5 )
+        td = ((3 * self._kappa * K * self._m_csm )/((self._n - 1 ) * vt *C_CGS)) ** 0.5
 
         ts = [
             np.inf
