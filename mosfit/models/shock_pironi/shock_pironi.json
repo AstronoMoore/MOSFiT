@@ -69,7 +69,7 @@
         "kind": "parameter",
         "value": 1.0,
         "class": "parameter",
-        "latex": "M_{\\rm ej}\\,(M_\\odot)"
+        "latex": "M_{\\rm csm}\\,(M_\\odot)"
     },
     "vejecta": {
         "kind": "parameter",
